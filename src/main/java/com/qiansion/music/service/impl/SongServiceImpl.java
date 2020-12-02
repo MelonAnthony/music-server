@@ -80,4 +80,9 @@ public class SongServiceImpl implements SongService {
     public List<Song> songOfSingerId(Integer singerId) {
         return songMapper.songOfSingerId(singerId);
     }
+
+    @Override
+    public String getUrlofSongById(Integer id) {
+        return songMapper.getUrlofSongById(id);
+    }
 }

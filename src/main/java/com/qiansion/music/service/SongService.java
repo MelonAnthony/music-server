@@ -33,4 +33,8 @@ public interface SongService {
      * 根据歌手id查询
      */
     List<Song> songOfSingerId(Integer singerId);
+    /**
+     * 根据歌曲id查询歌曲url
+     */
+    String getUrlofSongById(Integer id);
 }

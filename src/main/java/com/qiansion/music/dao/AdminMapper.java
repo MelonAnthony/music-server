@@ -1,5 +1,6 @@
 package com.qiansion.music.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -8,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AdminMapper {
     /**验证密码*/
-    int verifyPassword(String username,String password);
+    int verifyPassword(@Param("username") String username,@Param("password") String password);
 }

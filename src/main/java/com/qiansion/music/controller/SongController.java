@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.qiansion.music.domain.Song;
 import com.qiansion.music.service.SongService;
 import com.qiansion.music.util.Consts;
+import com.qiansion.music.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -70,7 +71,7 @@ public class SongController {
         String singer_id = req.getParameter("singerId").trim();
         String name = req.getParameter("name").trim();
         String introduction = req.getParameter("introduction").trim();
-        String pic = "/img/songPic/tubiao.jpg";
+        String pic = "/img/SongPic/tubiao.jpg";
         String lyric = req.getParameter("lyric").trim();
 
         if (mpfile.isEmpty()) {
@@ -137,6 +138,10 @@ public class SongController {
      */
     @GetMapping("/delete/{id}")
     public Object delete(@PathVariable("id") Integer id){
+        String fileName = songService.getUrlofSongById(id);
+        if(fileName!=null && !fileName.equals("")){
+            FileUtil.deleteSongFile(fileName);
+        }
         JSONObject jsonObject =new JSONObject();
         if(songService.delete(id)){
             jsonObject.put(Consts.CODE,1);
@@ -207,8 +212,8 @@ public class SongController {
     /**
      * 根据歌手id查询
      */
-    @GetMapping("/songOfSingerId")
-    public Object songOfSingerId(Integer singerId){
+    @GetMapping("/songOfSingerId/{singerId}")
+    public Object songOfSingerId(@PathVariable("singerId") Integer singerId){
         JSONObject jsonObject =new JSONObject();
         List<Song> songs;
         try {

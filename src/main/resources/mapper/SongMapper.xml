@@ -118,7 +118,11 @@
         <include refid="Blob_Column_List"></include>
         from song
     </select>
-    
+    <select id="getUrlofSongById" resultType="java.lang.String" parameterType="java.lang.Integer">
+        select url
+        from song
+        where id = #{id}
+    </select>
     <select id="songOfName" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
         select
         <include refid="Blob_Column_List"></include>
