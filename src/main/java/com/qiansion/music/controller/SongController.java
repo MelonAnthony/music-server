@@ -129,7 +129,7 @@ public class SongController {
      */
     @ResponseBody
     @PostMapping("/updateSongUrl")
-    public Object updateSongUrl(@PathVariable("id") Integer id, @RequestParam("file") MultipartFile mpfile){
+    public Object updateSongUrl(@RequestParam("file") MultipartFile mpfile, @RequestParam("id") int id){
         JSONObject jsonObject = new JSONObject();
         if (mpfile.isEmpty()) {
             jsonObject.put("code", 0);
@@ -151,7 +151,7 @@ public class SongController {
             Song song = new Song();
             song.setId(id);
             song.setUrl(storeUrlPath);
-            boolean res = songService.insert(song);
+            boolean res = songService.update(song);
             if (res) {
                 jsonObject.put("code", 1);
                 jsonObject.put("avator", storeUrlPath);
@@ -164,7 +164,7 @@ public class SongController {
             }
         } catch (IOException e) {
             jsonObject.put("code", 0);
-            jsonObject.put("msg", "上传失败" + e.getMessage());
+            jsonObject.put("msg", "发生了未知错误" + e.getMessage());
             return jsonObject;
         } finally {
             return jsonObject;
