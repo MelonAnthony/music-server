@@ -5,9 +5,9 @@
 <mapper namespace="com.qiansion.music.dao.SongListMapper">
     <resultMap id="BaseResultMap" type="com.qiansion.music.domain.SongList">
         <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="title" jdbcType="INTEGER" property="singerId"></result>
-        <result column="pic" jdbcType="VARCHAR" property="name"></result>
-        <result column="style" jdbcType="VARCHAR" property="pic"></result>
+        <result column="title" jdbcType="VARCHAR" property="title"></result>
+        <result column="pic" jdbcType="VARCHAR" property="pic"></result>
+        <result column="style" jdbcType="VARCHAR" property="style"></result>
     </resultMap>
 
     <resultMap id="ResultMapWithBLOBs" type="com.qiansion.music.domain.SongList" extends="BaseResultMap">

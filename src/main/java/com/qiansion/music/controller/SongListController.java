@@ -26,7 +26,7 @@ public class SongListController {
     public Object insertSongList(@RequestBody SongList songList){
         JSONObject jsonObject =new JSONObject();
         //设置默认头像路径
-        songList.setPic("/img/SongListPic/user.jpg");
+        songList.setPic("/img/SongListPic/default.png");
         if(songListService.insert(songList)){
             jsonObject.put(Consts.CODE,1);
             jsonObject.put(Consts.MSG,"添加成功");
