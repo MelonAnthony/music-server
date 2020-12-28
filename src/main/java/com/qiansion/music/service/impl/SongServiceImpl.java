@@ -71,6 +71,9 @@ public class SongServiceImpl implements SongService {
         return songMapper.songOfName(name);
     }
 
+    @Override
+    public List<Song> likeSongOfName(String name) { return songMapper.likeSongOfName(name); }
+
     /**
      * 根据歌手id查询
      *

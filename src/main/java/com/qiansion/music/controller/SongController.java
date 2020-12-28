@@ -243,7 +243,7 @@ public class SongController {
         return jsonObject;
     }
     /**
-     * 根据歌名字模糊查询列表
+     * 根据歌名字精确查询列表
      */
     @GetMapping("/songOfName")
     public Object songOfName(String name){
@@ -251,6 +251,25 @@ public class SongController {
         List<Song> songs;
         try {
             songs = songService.songOfName(name);
+        } catch (Exception e) {
+            jsonObject.put(Consts.CODE,0);
+            jsonObject.put(Consts.MSG,"查询失败");
+            return jsonObject;
+        }
+        jsonObject.put(Consts.CODE,1);
+        jsonObject.put(Consts.MSG,"查询成功");
+        jsonObject.put(Consts.DATA,songs);
+        return jsonObject;
+    }
+    /**
+     * 根据歌名字模糊查询列表
+     */
+    @GetMapping("/likeSongOfName")
+    public Object likeSongOfName(String name){
+        JSONObject jsonObject =new JSONObject();
+        List<Song> songs;
+        try {
+            songs = songService.likeSongOfName("%"+name+"%");
         } catch (Exception e) {
             jsonObject.put(Consts.CODE,0);
             jsonObject.put(Consts.MSG,"查询失败");

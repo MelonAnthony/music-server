@@ -26,9 +26,13 @@ public interface SongService {
      */
     List<Song> allSong();
     /**
-     * 根据歌名字模糊查询列表
+     * 根据歌名字精确查询列表
      */
     List<Song> songOfName(String name);
+    /**
+     * 根据歌名字模糊查询列表
+     */
+    List<Song> likeSongOfName(String name);
     /**
      * 根据歌手id查询
      */

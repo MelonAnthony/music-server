@@ -127,6 +127,13 @@
         select
         <include refid="Blob_Column_List"></include>
         from song
+        where name = #{name}
+    </select>
+
+    <select id="likeSongOfName" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+        select
+        <include refid="Blob_Column_List"></include>
+        from song
         where name like #{name}
     </select>
 
